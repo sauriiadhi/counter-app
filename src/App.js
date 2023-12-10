@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { useDispatch, useSelector  } from 'react-redux';
+import { incNum,decNum} from "./actions/index"
 
-function App() {
+const App= () => {
+  const myState = useSelector((state) => state.changeNumber);
+  const dispatch = useDispatch()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className="container">
+        <h1>Counter App</h1>
+        <div className="counter">
+            <div title='Increment' onClick={() => dispatch(incNum(2))} id="increment-btn">+</div>
+            <input id="counter-value" name="input" readOnly value={myState}/>
+            <div  id="decrement-btn" title='Decrement'
+            onClick={() => dispatch(decNum())}>-</div>
+        </div>
     </div>
+    </>
   );
 }
 
